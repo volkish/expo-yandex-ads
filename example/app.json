@@ -16,7 +16,12 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "expo.modules.yandexads.example"
+      "bundleIdentifier": "expo.modules.yandexads.example",
+      "infoPlist": {
+        "SKAdNetworkItems": [
+          { "SKAdNetworkIdentifier": "zq492l623r.skadnetwork" }
+        ]
+      }
     },
     "android": {
       "adaptiveIcon": {

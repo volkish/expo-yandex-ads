@@ -1,5 +1,40 @@
 PODS:
   - boost (1.76.0)
+  - DivKit (13.0.0):
+    - DivKit_Base (= 13.0.0)
+    - DivKit_BaseTiny (= 13.0.0)
+    - DivKit_BaseUI (= 13.0.0)
+    - DivKit_CommonCore (= 13.0.0)
+    - DivKit_LayoutKit (= 13.0.0)
+    - DivKit_LayoutKitInterface (= 13.0.0)
+    - DivKit_Networking (= 13.0.0)
+    - DivKit_Serialization (= 13.0.0)
+    - DivKit_TemplatesSupport (= 13.0.0)
+  - DivKit_Base (13.0.0):
+    - DivKit_BaseTiny (= 13.0.0)
+    - DivKit_BaseUI (= 13.0.0)
+  - DivKit_BaseTiny (13.0.0)
+  - DivKit_BaseUI (13.0.0):
+    - DivKit_BaseTiny (= 13.0.0)
+  - DivKit_CommonCore (13.0.0):
+    - DivKit_Base (= 13.0.0)
+    - DivKit_BaseTiny (= 13.0.0)
+  - DivKit_LayoutKit (13.0.0):
+    - DivKit_BaseTiny (= 13.0.0)
+    - DivKit_BaseUI (= 13.0.0)
+    - DivKit_CommonCore (= 13.0.0)
+    - DivKit_LayoutKitInterface (= 13.0.0)
+  - DivKit_LayoutKitInterface (13.0.0):
+    - DivKit_Base (= 13.0.0)
+    - DivKit_BaseTiny (= 13.0.0)
+    - DivKit_BaseUI (= 13.0.0)
+  - DivKit_Networking (13.0.0):
+    - DivKit_Base (= 13.0.0)
+  - DivKit_Serialization (13.0.0):
+    - DivKit_CommonCore (= 13.0.0)
+  - DivKit_TemplatesSupport (13.0.0):
+    - DivKit_CommonCore (= 13.0.0)
+    - DivKit_Serialization (= 13.0.0)
   - DoubleConversion (1.1.6)
   - EXApplication (5.1.1):
     - ExpoModulesCore
@@ -19,6 +54,8 @@ PODS:
     - ReactCommon/turbomodule/core
   - ExpoYandexAds (0.1.0):
     - ExpoModulesCore
+    - YandexMobileAds (= 5.5.0)
+    - YandexMobileAdsInstream (= 0.15.0)
   - FBLazyVector (0.71.6)
   - FBReactNativeSpec (0.71.6):
     - RCT-Folly (= 2021.07.22.00)
@@ -368,6 +405,22 @@ PODS:
     - React-jsi (= 0.71.6)
     - React-logger (= 0.71.6)
     - React-perflogger (= 0.71.6)
+  - YandexMobileAds (5.5.0):
+    - DivKit (~> 13.0)
+    - YandexMobileAds/Static (= 5.5.0)
+  - YandexMobileAds/Static (5.5.0):
+    - DivKit (~> 13.0)
+    - YandexMobileMetrica (< 5.0.0, >= 4.0.0)
+  - YandexMobileAdsInstream (0.15.0):
+    - YandexMobileAds (~> 5.5.0)
+  - YandexMobileMetrica (4.5.0):
+    - YandexMobileMetrica/Static (= 4.5.0)
+  - YandexMobileMetrica/Static (4.5.0):
+    - YandexMobileMetrica/Static/Core (= 4.5.0)
+    - YandexMobileMetrica/Static/Crashes (= 4.5.0)
+  - YandexMobileMetrica/Static/Core (4.5.0)
+  - YandexMobileMetrica/Static/Crashes (4.5.0):
+    - YandexMobileMetrica/Static/Core
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -418,8 +471,21 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - DivKit
+    - DivKit_Base
+    - DivKit_BaseTiny
+    - DivKit_BaseUI
+    - DivKit_CommonCore
+    - DivKit_LayoutKit
+    - DivKit_LayoutKitInterface
+    - DivKit_Networking
+    - DivKit_Serialization
+    - DivKit_TemplatesSupport
     - fmt
     - libevent
+    - YandexMobileAds
+    - YandexMobileAdsInstream
+    - YandexMobileMetrica
 
 EXTERNAL SOURCES:
   boost:
@@ -509,6 +575,16 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost: 57d2868c099736d80fcd648bf211b4431e51a558
+  DivKit: cbc853a0e94022835e9307e604135aa25424e284
+  DivKit_Base: 538c8daf847099e700646beb2b447aee1a4818fe
+  DivKit_BaseTiny: 1fa9cd01974dc65430bf409fef57e9a9b4c0679f
+  DivKit_BaseUI: b0478ce03702bbda3aa76f4388c05249ef578878
+  DivKit_CommonCore: 4db51be9c1263c0f7b62e9fb864785f47ab57875
+  DivKit_LayoutKit: c7974256f128cb2bbd7d5d6711c95c63727c53b3
+  DivKit_LayoutKitInterface: 02b3436a7191ab1b517da54a5fe076f9f6977c31
+  DivKit_Networking: 400504b0212282bd047c6720f70abaf74f6e4dd8
+  DivKit_Serialization: 4a55e41a1f06ec211e696963403db53469a19337
+  DivKit_TemplatesSupport: 6cb0a79e7673caeb05686403bd2b9a34c3624571
   DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
   EXApplication: d8f53a7eee90a870a75656280e8d4b85726ea903
   EXConstants: f348da07e21b23d2b085e270d7b74f282df1a7d9
@@ -517,7 +593,7 @@ SPEC CHECKSUMS:
   Expo: b04d142a2b477a391b47c62d179c1a9e1140e6ad
   ExpoKeepAwake: 69f5f627670d62318410392d03e0b5db0f85759a
   ExpoModulesCore: 6e0259511f4c4341b6b8357db393624df2280828
-  ExpoYandexAds: 447323494c45c7da4d94d6527c7f75910d2e2b75
+  ExpoYandexAds: 720be37194224352c873423f505653f0beffab82
   FBLazyVector: a83ceaa8a8581003a623facdb3c44f6d4f342ac5
   FBReactNativeSpec: 85eee79837cb797ab6176f0243a2b40511c09158
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
@@ -551,6 +627,9 @@ SPEC CHECKSUMS:
   React-RCTVibration: 73d201599a64ea14b4e0b8f91b64970979fd92e6
   React-runtimeexecutor: 8692ac548bec648fa121980ccb4304afd136d584
   ReactCommon: 0c43eaeaaee231d7d8dc24fc5a6e4cf2b75bf196
+  YandexMobileAds: 1affe9f27183a569960e108a4b4cb6cbcfc8eaea
+  YandexMobileAdsInstream: 65f00989f45cf61cb359eeef42e0f1001f2501d1
+  YandexMobileMetrica: 7dafc7d224077d4443ab3a587b82b24e9b6cc9c7
   Yoga: ba09b6b11e6139e3df8229238aa794205ca6a02a
 
 PODFILE CHECKSUM: 2dabfa8d03ecd5d252cf3d64faf60214346b3d9b
