@@ -1,11 +1,17 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'maven-publish'
-
-group = 'expo.modules.yandexads'
-version = '0.1.0'
-
 buildscript {
+
+  ext.kotlin_version = '1.8.21'
+
+  ext {
+    ndkVersion = "23.1.7779620"
+    compileSdkVersion = 33
+    buildToolsVersion = "23.0.1"
+    targetSdkVersion = 21
+    minSdkVersion = 21
+    frescoVersion = '2.5.0'
+    reactNativeVersion = "0.71.7"
+  }
+
   def expoModulesCorePlugin = new File(project(":expo-modules-core").projectDir.absolutePath, "ExpoModulesCorePlugin.gradle")
   if (expoModulesCorePlugin.exists()) {
     apply from: expoModulesCorePlugin
@@ -17,38 +23,50 @@ buildscript {
     rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
   }
 
-  // Ensures backward compatibility
-  ext.getKotlinVersion = {
-    if (ext.has("kotlinVersion")) {
-      ext.kotlinVersion()
-    } else {
-      ext.safeExtGet("kotlinVersion", "1.6.10")
+  repositories {
+    google()
+    mavenCentral()
+    maven {
+        url "https://repo1.maven.org/maven2/"
     }
   }
 
-  repositories {
-    mavenCentral()
-  }
-
   dependencies {
-    classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${getKotlinVersion()}")
+    classpath("com.android.tools.build:gradle:4.2.2")
+    classpath("com.facebook.react:react-native-gradle-plugin")
+    classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
   }
 }
 
+plugins {
+//    id 'com.android.application'
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android' version '1.8.21' apply false
+}
+
+apply plugin: 'kotlin-android'
+apply plugin: 'maven-publish'
+
+group = 'expo.modules.yandexads'
+version = '0.1.0'
+
+
+
 // Creating sources with comments
 task androidSourcesJar(type: Jar) {
-  classifier = 'sources'
+  archiveClassifier = 'sources'
   from android.sourceSets.main.java.srcDirs
 }
 
 afterEvaluate {
   publishing {
     publications {
-      release(MavenPublication) {
-        from components.release
-        // Add additional sourcesJar to artifacts
-        artifact(androidSourcesJar)
-      }
+/*      release(MavenPublication) {
+            from components.release
+            groupId = 'com.my.group'
+            artifactId = 'id'
+            version = Config.libraryVersion
+      } */
     }
     repositories {
       maven {
@@ -59,7 +77,9 @@ afterEvaluate {
 }
 
 android {
-  compileSdkVersion safeExtGet("compileSdkVersion", 31)
+  namespace 'expo.modules.yandexads'
+
+  compileSdkVersion safeExtGet("compileSdkVersion", 33)
 
   compileOptions {
     sourceCompatibility JavaVersion.VERSION_11
@@ -67,7 +87,7 @@ android {
   }
 
   kotlinOptions {
-    jvmTarget = JavaVersion.VERSION_11.majorVersion
+      jvmTarget = '11' // <----
   }
 
   defaultConfig {
@@ -81,11 +101,45 @@ android {
   }
 }
 
-repositories {
-  mavenCentral()
-}
-
 dependencies {
   implementation project(':expo-modules-core')
-  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${getKotlinVersion()}"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+      implementation("com.yandex.android:mobileads:5.7.0")
+
+      implementation("androidx.preference:preference-ktx:1.2.0")
 }
+
+allprojects {
+  repositories {
+    maven {
+      // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+      url("$rootDir/../node_modules/react-native/android")
+    }
+    maven {
+      // Android JSC is installed from npm
+      url("$rootDir/../node_modules/jsc-android/dist")
+    }
+    google()
+    maven { url 'https://jitpack.io' }
+    mavenCentral {
+      // We don't want to fetch react-native from Maven Central as there are
+      // older versions over there.
+      content {
+        excludeGroup "com.facebook.react"
+      }
+    }
+  }
+}
+
+/*
+compileKotlin {
+  kotlinOptions {
+    jvmTarget = "1.8"
+  }
+}
+compileTestKotlin {
+  kotlinOptions {
+    jvmTarget = "1.8"
+  }
+}
+*/

@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "expo-yandex-ads",
+    "slug": "expo-yandex-ads",
+    "version": "0.1.0",
+    "description": "Yandex Ads support",
+    "sdkVersion": "48.0.0",
+    "platforms": [],
+    "android": {
+      "package": "com.anonymous.expoyandexads"
+    }
+  }
+}

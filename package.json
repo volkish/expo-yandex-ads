@@ -13,7 +13,10 @@
     "prepublishOnly": "expo-module prepublishOnly",
     "expo-module": "expo-module",
     "open:ios": "open -a \"Xcode\" example/ios",
-    "open:android": "open -a \"Android Studio\" example/android"
+    "open:android": "open -a \"Android Studio\" example/android",
+    "start": "expo start --dev-client",
+    "android": "expo run:android",
+    "ios": "expo run:ios"
   },
   "keywords": [
     "react-native",
@@ -28,12 +31,20 @@
   "author": "Artem Ivanov <ai@artem.cc> (https://github.com/volkish)",
   "license": "MIT",
   "homepage": "https://github.com/volkish/expo-yandex-ads#readme",
-  "dependencies": {},
+  "dependencies": {
+    "expo": "~48.0.15",
+    "expo-splash-screen": "~0.18.2",
+    "expo-status-bar": "~1.4.4",
+    "react": "18.2.0",
+    "react-native": "0.71.7",
+    "react-native-gradle-plugin": "^0.71.17"
+  },
   "devDependencies": {
+    "@babel/core": "^7.20.0",
     "@types/react": "^18.0.25",
-    "@types/react-native": "^0.70.6",
+    "@types/react-native": "^0.71.6",
     "expo-module-scripts": "^3.0.4",
-    "expo-modules-core": "^1.1.0"
+    "expo-modules-core": "^1.2.6"
   },
   "peerDependencies": {
     "expo": "*",
