@@ -1,6 +1,6 @@
 import { Button, StyleSheet, Text, View } from 'react-native';
 
-import { initialize, interstitialAd, ExpoYandexAdsView } from 'expo-yandex-ads';
+import { initialize, interstitialAd, ExpoYandexAdsView} from 'expo-yandex-ads';
 import { useEffect } from 'react';
 
 export default function App() {
@@ -15,6 +15,7 @@ export default function App() {
     })
   }, [])
   */
+  // initialize({ userConsent: true, locationConsent: true });
 
   return (
     <View style={styles.container}>
@@ -23,7 +24,7 @@ export default function App() {
           style={{ width: 300, height: 250 }}
           onLayout={(event) => console.log(event.nativeEvent)}
           size='BANNER_300x250'
-          adUnitId="demo-banner-yandex" // 'R-M-2085336-1'
+          adUnitId="R-M-243655-8" // 'R-M-2085336-1'
           onLoad={(...args: any) => console.error(args)}
           onError={(...args: any) => console.error(args)}
         />

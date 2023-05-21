@@ -107,6 +107,7 @@ dependencies {
       implementation("com.yandex.android:mobileads:5.7.0")
 
       implementation("androidx.preference:preference-ktx:1.2.0")
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 }
 
 allprojects {
