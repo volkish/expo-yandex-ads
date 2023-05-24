@@ -7,13 +7,6 @@ import com.yandex.mobile.ads.common.MobileAds
 import com.yandex.mobile.ads.instream.MobileInstreamAds
 import android.util.Log;
 
-data class InitializeOptions(
-    val userConsent: Boolean = false,
-    val locationConsent: Boolean = false,
-    val enableLogging: Boolean = false,
-    val enableDebugErrorIndicator: Boolean = false
-)
-
 class ExpoYandexAdsModule : Module() {
 
     // Each module class must implement the definition function. The definition consists of components
@@ -25,32 +18,14 @@ class ExpoYandexAdsModule : Module() {
         // The module will be accessible from `requireNativeModule('ExpoYandexAds')` in JavaScript.
         Name("ExpoYandexAds")
 
-        /*
-            // Defines a JavaScript synchronous function that runs the native code on the JavaScript thread.
-            Function("initialize") { options: InitializeOptions ->
-              val preferences = PreferenceManager.getDefaultSharedPreferences(Common.appContext)
-              preferences.run {
-                  MobileAds.setUserConsent(options.userConsent)
-                  MobileAds.setLocationConsent(options.locationConsent)
-                  //MobileAds.setAgeRestrictedUser(options.ageRestrictedUser)
-                  MobileAds.setAgeRestrictedUser(false)
-              }
-
-              MobileInstreamAds.setAdGroupPreloading(INSTREAM_AD_GROUP_PRELOADING_ENABLED)
-              MobileAds.initialize(Common.appContext) {
-                  println("MobileAds init")
-              }
-
-              MobileAds.enableLogging(options.enableLogging)
-            }
-            */
-
-        OnCreate {
+        Function("initialize") { options: InitializeOptions ->
             val preferences = PreferenceManager.getDefaultSharedPreferences(Common.appContext)
             preferences.run {
-                MobileAds.setUserConsent(true)
-                MobileAds.setLocationConsent(true)
-                //MobileAds.setAgeRestrictedUser(options.ageRestrictedUser)
+                MobileAds.setUserConsent(options.userConsent)
+                MobileAds.setLocationConsent(options.locationConsent)
+                MobileAds.enableLogging(options.enableLogging)
+                MobileAds.enableDebugErrorIndicator(options.enableDebugErrorIndicator)
+
                 MobileAds.setAgeRestrictedUser(false)
             }
 
@@ -59,7 +34,6 @@ class ExpoYandexAdsModule : Module() {
                 Log.d("EYA", "Mobile Ads init")
             }
 
-            MobileAds.enableLogging(true)
         }
 
         AsyncFunction("interstitialAd") { adUnitId: String  ->
@@ -70,6 +44,9 @@ class ExpoYandexAdsModule : Module() {
         // Enables the module to be used as a native view. Definition components that are accepted as part of
         // the view definition: Prop, Events.
         View(ExpoYandexAdsView::class) {
+            Events("onLoad")
+            Events("onError")
+
             // Defines a setter for the `name` prop.
             Prop("size") { view: ExpoYandexAdsView, prop: String ->
                 view.updateSize(prop)

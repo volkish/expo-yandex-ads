@@ -5,8 +5,7 @@ import { useEffect } from 'react';
 
 export default function App() {
 
-    /*
-    useEffect(() => {
+  useEffect(() => {
     initialize({
       userConsent: true,
       // enableDebugErrorIndicator: true,
@@ -14,8 +13,6 @@ export default function App() {
       locationConsent: true
     })
   }, [])
-  */
-  // initialize({ userConsent: true, locationConsent: true });
 
   return (
     <View style={styles.container}>
