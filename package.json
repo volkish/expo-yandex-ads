@@ -4,6 +4,7 @@
   "description": "Yandex Ads support",
   "main": "build/index.js",
   "types": "build/index.d.ts",
+  "sideEffects": false,
   "scripts": {
     "build": "expo-module build",
     "clean": "expo-module clean",
@@ -22,15 +23,21 @@
     "react-native",
     "expo",
     "expo-yandex-ads",
-    "ExpoYandexAds"
+    "ExpoYandexAds",
+    "MobileAds",
+    "Yandex"
   ],
-  "repository": "https://github.com/volkish/expo-yandex-ads",
+  "homepage": "https://github.com/volkish/expo-yandex-ads#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/volkish/expo-yandex-ads",
+    "baseUrl": "https://github.com/volkish/expo-yandex-ads"
+  },
   "bugs": {
     "url": "https://github.com/volkish/expo-yandex-ads/issues"
   },
   "author": "Artem Ivanov <ai@artem.cc> (https://github.com/volkish)",
   "license": "MIT",
-  "homepage": "https://github.com/volkish/expo-yandex-ads#readme",
   "dependencies": {
     "expo": "~48.0.15",
     "expo-splash-screen": "~0.18.2",
